@@ -1,0 +1,21 @@
+# Зависимости и сборка
+node_modules/
+dist/
+.vite/
+
+# Логи
+*.log
+npm-debug.log*
+
+# Системные файлы ОС
+.DS_Store
+Thumbs.db
+
+# Настройки редакторов
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Переменные окружения
+.env
+.env.local

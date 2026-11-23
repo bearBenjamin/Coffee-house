@@ -1,0 +1,10 @@
+mixin icon(name, width = 24, height = 24)
+  svg(width=width, height=height, aria-hidden="true")&attributes(attributes)
+    use(href=`/__spritemap#icon-${name}`)
+
+//- пример использования
+//- include /components/icon.pug
+
+//- header.header
+//-   a.header__logo(href="/")
+//-     +icon('coffee-cup', 32, 32)(class="header__icon")
