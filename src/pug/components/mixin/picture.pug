@@ -1,0 +1,67 @@
+mixin picture(name, ext, alt = '', sizes = {}, isLazy = true)
+  -
+    const basePath = `/src/assets/images/${name}`;
+    const mimeType = ext === 'jpg' ? 'image/jpeg' : `image/${ext}`;
+  picture
+    if Array.isArray(sizes)
+      source(
+        width=sizes[0]
+        height=sizes[1]
+        type="image/webp"
+        srcset=`${basePath}@1x.webp 1x, ${basePath}@2x.webp 2x`
+      )
+      img(
+        src=`${basePath}@1x.${ext}`
+        srcset=`${basePath}@2x.${ext} 2x`
+        width=sizes[0]
+        height=sizes[1]
+        alt=alt
+        loading=isLazy ? 'lazy' : false
+      )&attributes(attributes)
+    else
+      if sizes.desktop
+        source(
+          width=sizes.desktop[0]
+          height=sizes.desktop[1]
+          type="image/webp"
+          media="(min-width: 1440px)"
+          srcset=`${basePath}-desktop@1x.webp 1x, ${basePath}-desktop@2x.webp 2x`
+        )
+      if sizes.tablet
+        source(
+          width=sizes.tablet[0]
+          height=sizes.tablet[1]
+          type="image/webp"
+          media="(min-width: 768px)"
+          srcset=`${basePath}-tablet@1x.webp 1x, ${basePath}-tablet@2x.webp 2x`
+        )
+      source(
+        width=sizes.mobile[0]
+        height=sizes.mobile[1]
+        type="image/webp"
+        srcset=`${basePath}-mobile@1x.webp 1x, ${basePath}-mobile@2x.webp 2x`
+      )
+      if sizes.desktop
+        source(
+          width=sizes.desktop[0]
+          height=sizes.desktop[1]
+          type=mimeType
+          media="(min-width: 1440px)"
+          srcset=`${basePath}-desktop@1x.${ext} 1x, ${basePath}-desktop@2x.${ext} 2x`
+        )
+      if sizes.tablet
+        source(
+          width=sizes.tablet[0]
+          height=sizes.tablet[1]
+          type=mimeType
+          media="(min-width: 768px)"
+          srcset=`${basePath}-tablet@1x.${ext} 1x, ${basePath}-tablet@2x.${ext} 2x`
+        )
+      img(
+        src=`${basePath}-mobile@1x.${ext}`
+        srcset=`${basePath}-mobile@2x.${ext} 2x`
+        width=sizes.mobile[0]
+        height=sizes.mobile[1]
+        alt=alt
+        loading=isLazy ? 'lazy' : false
+      )&attributes(attributes)

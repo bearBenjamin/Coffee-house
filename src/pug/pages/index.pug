@@ -1,0 +1,86 @@
+extends /layouts/main.pug
+
+block init
+  -
+    var currentPage = 'home'
+  include index-data.pug
+  include /components/mixin/picture.pug
+
+block hero
+  section.hero
+    .hero__bg
+      +picture(
+        heroItem.name,
+        heroItem.ext,
+        heroItem.alt,
+        heroItem.size,
+        heroItem.isLazy
+      )(class="hero__bg-img")
+    video.hero__video(
+      src="https://www.pexels.com/ru-ru/video/2909914/"
+      autoplay
+      loop
+      muted
+      playsinline
+    )
+    .wrapper.hero__wrapper
+      h1.title.hero__title #[span.hero__accent Enjoy] premium coffee at our charming cafe
+      p.hero__text With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.
+block content
+  main(class=`main-${currentPage}`)
+    section.slider-favorite(id="favorite-coffee")
+      .wrapper.slider-favorite__wrapper
+        .slider-favorite__conteiner.slider
+          h2.slider__subtitle Choose your #[span.slider__subtitle-accent favorite] coffee
+          .slider__window
+            ul.slider__list
+              each slide in sliderItems
+                li.slider__item
+                  .slider__item-container
+                    +picture(slide.name, slide.ext, slide.alt, slide.sizes)(class="slider__image")
+                    h3.slider__item-title= slide.title
+                    p.slider__item-text= slide.description
+                    span.slider__item-price= slide.price
+          .slider__pagination-conteiner
+            ol.slider__paginations-list
+              li.slider__paginations-item
+                button.slider__paginations-btn.slider__paginations-btn--current(type="button")
+                  span.visually-hidden Первый слайдер
+              li.slider__paginations-item
+                button.slider__paginations-btn
+                  span.visually-hidden Второй слайдер
+              li.slider__paginations-item
+                button.slider__paginations-btn
+                  span.visually-hidden Третий слайдер
+          .slider__btn-toggle-conteiner
+            button.slider__btn.slider__btn--prev(type="button")
+              span.visually-hidden Показать предыдущий слайд
+            button.slider__btn.slider__btn--next(type="button")
+              span.visually-hidden Показать следующий слайд
+    section.about(id='about')
+      .wrapper.about__wrapper
+        h2.visualy-hidden About
+        p.about__text Resource is #[span.about__accent the perfect and cozy place] where you can enjoy a variety of hot beverages, relax, catch up with friends, or get some work done.
+        ul.about__gallery
+          each image in aboutPictures
+            li.about__item
+              .about__item-container
+                +picture(image.name, image.ext, image.alt, image.sizes)
+    section.mobile(id='mobile')
+      .wrapper.mobile__wrapper
+        h2.mobile__title #[span.mobile__accent Download] our app to start ordering
+        p.mobile__text Download the Resource app today and experience the comfort of ordering your favorite coffee from wherever you are
+        ul.mobile__list
+          li.mobile__item
+            a.mobile__link(href="#")
+              .mobile__link-innert
+                p.mobile__link-text Available on the
+                h3.mobile__link-title App Store
+          li.mobile__item
+            a.mobile__link(href="#")
+              .mobile__link-innert
+                p.mobile__link-text Available on
+                h3.mobile__link-title Google Play
+
+
+

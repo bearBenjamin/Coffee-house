@@ -1,0 +1,45 @@
+include header-data.pug
+
+mixin navigationMenu(items)
+  ul.main-nav__list
+    each item in items
+      - var linkHref = currentPage === 'home' ? `#${item.id}` : `index.html#${item.id}`;
+      li.main-nav__list-item
+        a.main-nav__list-link(href=linkHref)= item.text
+
+header.main-header
+  .wrapper.main-header__wrapper
+    nav.main-header__nav.main-nav
+      if currentPage === 'home'
+        span.main-nav__logo-link
+          img.main-nav__logo-image(
+            src="#"
+            width="100"
+            height="60"
+            alt="Логотип кофейни"
+          )
+      else
+        a.main-nam__logo-link(href="home.html")
+          img.main-nav__logo-image(
+            src="#"
+            width="100"
+            height="60"
+            alt="Логотип кофейни"
+         )
+      +navigationMenu(menuItems)
+    button.main-header__theme-switch.theme-switch(
+      type="button"
+      aria-label="Включить темную тему"
+      aria-pressed="false"
+    )
+    button.main-header__burger.burger(type="button")
+      span.visually-hidden.burger-text Открыть меню
+      span.burger-line.burger-line-one
+      span.burger-line.burger-line-two
+    if currentPage === 'menu'
+      span.header__menu-link.header__menu-link--active
+        | Menu
+    else
+      a.header__menu-link(href="menu.html")
+        | Menu
+  block hero

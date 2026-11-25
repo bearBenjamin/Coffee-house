@@ -11,6 +11,9 @@ export default defineConfig({
       svgo: true,
     }),
     vituum({
+      pages: {
+        dir: './src/pug/pages', // Указываем новую папку со страницами
+      },
       imports: {
         filenamePattern: {
           '+.css': [], // Отключаем автоматическое создание +.css
@@ -18,7 +21,7 @@ export default defineConfig({
       },
     }),
     pug({
-      root: './src', // Позволяет делать include от корня src
+      root: './src/pug', // Меняем корень для extends и include на src/pug
       options: {
         pretty: true, // Красивое форматирование итогового HTML без сжатия в одну строку
       },
