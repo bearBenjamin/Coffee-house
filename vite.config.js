@@ -13,6 +13,7 @@ export default defineConfig({
     vituum({
       pages: {
         dir: './src/pug/pages', // Указываем новую папку со страницами
+        normalizeBasePath: true, // Корректные относительные пути при base: './'
       },
       imports: {
         filenamePattern: {
@@ -30,5 +31,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsInlineLimit: 0, // Не вшивать мелкие картинки в base64
+    rollupOptions: {
+      input: [
+        './src/pug/pages/**/*.{json,pug,html}', // Указываем новую папку для продакшн-сборки
+        '!./src/pug/pages/**/*.{pug,html}.json',
+      ],
+    },
   },
 });
