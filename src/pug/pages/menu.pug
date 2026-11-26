@@ -1,0 +1,73 @@
+extends /layouts/main.pug
+
+block init
+  -
+    var currentPage = 'menu'
+  include /data/index-data.pug
+  include /data/menu-data.pug
+  include /components/mixin/picture.pug
+
+block content
+  main(class=`main-${currentPage}`)
+    section.menu
+      .wrapper.menu__wrapper
+        h1.menu-title.title Behind each of our cups hides an #[span.menu__accent amazing surprise]
+        ul.menu__list-btn
+          li.menu__item
+            button.menu__btn.menu__btn--current.menu__btn--coffee(type="button") Coffee
+              span.visually-hidden Кнопка выбора кофейного меню
+          li.menu__item
+            button.menu__btn.menu__btn--tea(type="button") Tea
+              span.visually-hidden Кнопка выбора чайного меню
+          li.menu__item
+            button.menu__btn.menu__btn--dessert(type="button") Dessert
+              span.visually-hidden Кнопка выбора десертов
+        //- Контейнер для карточек
+        ul.menu__list
+          each item in menuCoffeDefolts
+            li.menu__item
+              .menu__item-container
+                +picture(item.name, item.ext, item.alt, item.size)
+                h3.menu__item-title= item.title
+                p.menu__item-description= item.description
+                p.menu__item-price= item.price
+        button.menu__reffresh(type="button")
+          span.visually-hidden Кнопка обновить меню
+block templates
+  template#menu-card-template
+    li.menu__item
+      .menu__item-container
+        picture
+          source.card__source-webp(type="image/webp" srcset="")
+          img.card__image(src="" srcset="" width="310" height="310" alt="" loading="lazy")
+        h3.menu__item-title
+        p.menu__item-description
+        p.menu__item-price
+
+  dialog.modal#product-modal
+    .modal__container
+      .modal__image-wrapper
+        picture
+          source.modal__source-webp(type="image/webp" srcset="")
+          img.modal__image(src="" srcset="" width="310" height="310" alt="")
+      .modal__content
+        h2.modal__title
+        p.modal__description
+
+        fieldset.modal__group
+          legend.modal__label Size
+          .modal__options.modal__sizes
+            //- Сюда JS подставит 3 радиокнопки (S, M, L)
+
+        fieldset.modal__group
+          legend.modal__label Additives
+          .modal__options.modal__additives
+            //- Сюда JS подставит 3 чекбокса (Sugar, Cinnamon, Syrup и т.д.)
+
+        .modal__total
+          span.modal__total-label Total:
+          span.modal__total-price $0.00
+
+        p.modal__info The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.
+
+        button.modal__close(type="button") Close
