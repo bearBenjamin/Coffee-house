@@ -1,0 +1,72 @@
+$tablet-width: 768px;
+$desktop-width: 1440px;
+$mobile-width: 380px;
+
+:root {
+  --font-primary: "Inter", "Arial", sans-serif;
+
+  // Font family
+  --font-primary: "Inter", "Arial", sans-serif;
+
+  // Heading 1 (Mobile: 42px / 115% -> Tablet/Desktop: 72px / 105%)
+  --fs-h1: 42px;
+  --lh-h1: 1.15;
+
+  // Heading 2 (Mobile: 32px / 125% -> Tablet/Desktop: 60px / 125%)
+  --fs-h2: 32px;
+  --lh-h2: 1.25;
+
+  // Heading 3 (24px / 125%)
+  --fs-h3: 24px;
+  --lh-h3: 1.25;
+
+  // Body & Action (16px / 150%)
+  --fs-body: 16px;
+  --lh-body: 1.5;
+
+  // Caption (10px / 140%)
+  --fs-caption: 10px;
+  --lh-caption: 1.4;
+
+  // Burger link (32px / 125%)
+  --fs-burger: 32px;
+  --lh-burger: 1.25;
+
+  @media (min-width: 768px) {
+    --fs-h1: 72px;
+    --lh-h1: 1.05;
+
+    --fs-h2: 60px;
+    --lh-h2: 1.25;
+  }
+
+  // Text
+  --text-primary: #403f3d;
+  --text-inverse: #e1d4c9;
+  --text-accent: #b0907a;
+
+  // Background
+  --bg-page: #e1d4c9;
+  --bg-container: #665f55;
+  --bg-overlay: rgb(64 63 61 / 0.8);
+
+  // Border
+  --border-primary: #c1b6ad;
+  --border-inverse: #665f55;
+}
+
+[data-theme="dark"] {
+  // Text
+  --text-primary: #e1d4c9;
+  --text-inverse: #e1d4c9;
+  --text-accent: #b0907a;
+
+  // Background
+  --bg-page: #292826;
+  --bg-container: #403f3d;
+  --bg-overlay: rgb(41 40 38 / 0.8);
+
+  // Border
+  --border-primary: #665f55;
+  --border-inverse: #c1b6ad;
+}

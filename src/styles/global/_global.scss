@@ -1,0 +1,26 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit; // border-box
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
